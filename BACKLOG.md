@@ -27,10 +27,10 @@ Legend: `[ ]` to do · `[x]` done · **(decision)** needs a choice before it can
 
 ## M2 — Domain types
 
-- [ ] Common entity fields: Wikidata ID, Italian name + aliases, notoriety, coordinates
-- [ ] `Country` type (identity, geography, population, politics, misc), including the category enum (UN member / observer / partially recognized / dependent territory)
-- [ ] Multi-valued fields modelled as sets (capital, leader, languages, borders…)
-- [ ] Dataset envelope with `snapshotDate` and schema version
+- [x] Common entity fields: Wikidata ID, Italian name + aliases, notoriety, coordinates
+- [x] `Country` type (identity, geography, population, politics, misc), including the category enum (UN member / observer / partially recognized / dependent territory)
+- [x] Multi-valued fields modelled as sets (capital, leader, languages, borders…)
+- [x] Dataset envelope with `snapshotDate` and schema version
 - [ ] Types for regions, cities, relief, waters, landforms, sites (can follow later, one per milestone in M7)
 
 ## M3 — Data pipeline: countries

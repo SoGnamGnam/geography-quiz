@@ -49,10 +49,18 @@ A geography quiz for personal use, **fully open** and **non-commercial**, playab
 - **Merged leaders**: president, king, prime minister and similar roles merge into a single "leader" field. The correct answer is the complete set.
 - **Multiple values**: when an attribute has several values, the correct answer is the **set of all** values.
   Example: the capital of South Africa is "Pretoria, Cape Town, Bloemfontein".
-- **Notoriety**: assigned and flagged **manually** for each entity. At maximum difficulty all entities appear.
+- **Notoriety**: assigned and flagged **manually** for each entity, on a **1–5 scale** (1 = very well known, 5 = obscure). A quiz includes entities up to its notoriety threshold, so at threshold 5 (maximum difficulty) all entities appear.
   _Proposal to confirm_: use the Wikidata sitelinks count as a suggested initial value, to be corrected by hand.
 
 ## Entities and fields
+
+The TypeScript types live in `src/domain/` and are the reference for field names. Data modelling rules:
+
+- Multi-valued attributes are stored as **sets**: JSON arrays with no duplicates and no meaningful order (`ValueSet<T>`). An empty set means unknown or not applicable.
+- Links to other items (capital, leader, language, currency…) are stored as **references**: the Wikidata ID plus the Italian label resolved at build time.
+- Enum values (category, continent, organization, driving side) are stable English codes; the UI shows their Italian labels.
+- Every JSON dataset is wrapped in an envelope with `schemaVersion`, `entityType` and `snapshotDate`.
+- Derived values (e.g. population density) are computed at runtime, not stored.
 
 ### Fields common to every entity
 

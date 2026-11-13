@@ -24,6 +24,7 @@ CI (`.github/workflows/ci.yml`) runs lint, check, test and build on every push t
 
 ## Code layout
 
+- `src/domain/`: entity types (`Country`…), the dataset envelope, set helpers and Italian labels for enums. Pure TypeScript, shared by the engine, the UI and the data pipeline. Bump `SCHEMA_VERSION` on any breaking change to the types.
 - `src/engine/`: the quiz engine. Pure TypeScript, so it must never import Svelte, the DOM or UI modules. Tests sit next to the code as `*.test.ts`.
 - `src/`: Svelte UI (`main.ts`, `App.svelte`, `app.css`).
 - `public/icon.svg`: the single source for every PWA icon (`pwa-assets.config.ts`).

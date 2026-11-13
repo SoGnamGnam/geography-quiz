@@ -23,7 +23,7 @@ export default defineConfig({
       workbox: {
         // Precache everything, including the lazy-loaded JSON datasets,
         // so the app works fully offline after the first visit.
-        globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2,json}'],
+        globPatterns: ['**/*.{js,css,html,svg,png,webp,ico,woff2,json}'],
       },
     }),
   ],

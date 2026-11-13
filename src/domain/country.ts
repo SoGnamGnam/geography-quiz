@@ -93,9 +93,9 @@ export interface Country extends BaseEntity {
    * Missing when no flag is available.
    */
   readonly flag?: string
-  /** Wikimedia Commons file name of the coat of arms, if any. */
+  /** Key of the coat of arms image (`public/coats-of-arms/<key>.webp`), if any. */
   readonly coatOfArms?: string
-  /** Key of the generated silhouette SVG, if Natural Earth has the shape. */
+  /** Key of the generated silhouette (`public/silhouettes/<key>.svg`), if Natural Earth has the shape. */
   readonly silhouette?: string
 
   // Geography

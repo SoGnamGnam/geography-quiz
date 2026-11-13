@@ -19,14 +19,18 @@ Package manager: **npm** (commit `package-lock.json`; CI uses `npm ci`).
 - `npm run lint`: ESLint + Prettier check; `npm run format` rewrites files
 - `npm test`: Vitest, a single run; `npm run test:watch` for watch mode
 - A single test: `npx vitest run src/engine/index.test.ts` or `npx vitest run -t "test name"`
+- `npm run data:countries`: regenerate `data/countries.json`, the silhouettes and the coats of arms (uses the cache in `scripts/.cache/`; add `-- --refresh` to re-query Wikidata). Needs network access on the first run.
 
-CI (`.github/workflows/ci.yml`) runs lint, check, test and build on every push to `main` and on every PR.
+CI (`.github/workflows/ci.yml`) runs lint, check, test and build on every push to `main` and on every PR. `.github/workflows/data.yml` refreshes the data monthly and opens a PR.
 
 ## Code layout
 
 - `src/domain/`: entity types (`Country`…), the dataset envelope, set helpers and Italian labels for enums. Pure TypeScript, shared by the engine, the UI and the data pipeline. Bump `SCHEMA_VERSION` on any breaking change to the types.
 - `src/engine/`: the quiz engine. Pure TypeScript, so it must never import Svelte, the DOM or UI modules. Tests sit next to the code as `*.test.ts`.
 - `src/`: Svelte UI (`main.ts`, `App.svelte`, `app.css`).
+- `scripts/`: the build-time data pipeline (Node + `tsx`, typechecked with `tsconfig.scripts.json`). `scripts/lib/` holds the generic SPARQL, Commons, validation and output helpers; `scripts/countries/` holds the country-specific queries, the pure `assemble.ts` (unit-tested), silhouettes and coats of arms.
+- `overrides/`: hand-written corrections applied on every regeneration (format in `overrides/README.md`). Fix data here, never by editing `data/` directly.
+- `data/`: generated, committed datasets. `public/silhouettes/` and `public/coats-of-arms/` are generated as well. The coat-of-arms table in `THIRD_PARTY.md` is generated between marker comments.
 - `public/icon.svg`: the single source for every PWA icon (`pwa-assets.config.ts`).
 - Font: Inter, bundled through `@fontsource-variable/inter` (never load fonts from a CDN).
 

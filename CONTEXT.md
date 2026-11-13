@@ -147,10 +147,25 @@ The quiz engine is a **pure TypeScript module**, separate from the UI and testab
 
 **World Quiz** (npm package `world-quiz`; also the PWA name).
 
+## Data pipeline (countries)
+
+Implemented in `scripts/countries/` and run with `npm run data:countries`. It writes `data/countries.json` (one country per line, for readable diffs), `public/silhouettes/<QID>.svg`, `public/coats-of-arms/<QID>.webp` and `data/attributions/coats-of-arms.json`, and refreshes the coat-of-arms table in `THIRD_PARTY.md`.
+
+- **Selection**: every Wikidata item with an ISO 3166-1 alpha-2 code that has not been dissolved, adjusted by the overrides (Antarctica and ISO "reserved" codes are excluded; Abkhazia, South Ossetia, Northern Cyprus, Transnistria, Somaliland and the Sahrawi Republic are included by hand). Result: 255 entries, i.e. 193 UN members, 2 observers, 8 partially recognized states and 52 dependent territories.
+- **Category**: UN membership from Wikidata, observers set by hand, otherwise "state with limited recognition" → partially recognized, everything else → dependent territory. Denmark needs an override, because Wikidata records the UN seat on the Kingdom of Denmark.
+- **Values**: only best-ranked statements; for capitals, leaders, currencies and organizations, statements with an end date are dropped. Population takes the most recent figure. Only the ASCII two-letter TLD is kept.
+- **Independence year**: Wikidata has no consistent "independence" property, so this is the inception year (P571) of the current state (e.g. Italy → 1946, the Republic). It is left empty for dependent territories. Treat it with care in question templates.
+- **Notoriety**: seeded from the sitelinks count, with thresholds in `scripts/countries/assemble.ts`, and corrected in the overrides file.
+- **Manual overrides**: `overrides/countries.json`, a JSON object keyed by QID (format in `overrides/README.md`). Overrides are applied on every regeneration.
+- **Silhouettes**: Natural Earth 1:10m, matched by Wikidata ID (then ISO alpha-3). Far-away parts are dropped (a part is kept if it lies within 800 km of a part already kept), then the shape is projected with an equal-area projection centred on the country, simplified, and written as a single `currentColor` path. Missing: Abkhazia, South Ossetia, Transnistria and the Sahrawi Republic, which Natural Earth does not separate.
+- **Coats of arms**: from Commons (P94), as standard 330px thumbnails re-encoded to 200px WebP (about 4 MB in total). Turkey has none.
+- **Flags**: `flag-icons` codes (lowercase ISO alpha-2); missing for the 6 partially recognized states without an ISO code.
+- **Refresh**: `.github/workflows/data.yml` runs monthly (and on demand), re-queries Wikidata and opens a PR.
+
 ## Open points
 
 - Distractors for multiple-answer questions: e.g. other plausible sets ("Pretoria, Durban, Johannesburg"), or sets from other countries.
-- How to manage manual notoriety across thousands of entities (override file, default values).
+- Notoriety at scale (thousands of entities in M7): the sitelinks-based seed plus overrides works for countries; revisit for cities, rivers, etc.
 
 ## Licensing
 

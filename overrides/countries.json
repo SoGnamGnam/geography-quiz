@@ -1,0 +1,59 @@
+{
+  "Q51": { "exclude": true, "note": "Antarctica: a continent, not a country" },
+  "Q10372207": { "exclude": true, "note": "Antarctic Treaty area: duplicate of AQ" },
+  "Q644636": { "exclude": true, "note": "Cyprus (island): duplicate of the state Q229" },
+  "Q184851": {
+    "exclude": true,
+    "note": "Diego Garcia: ISO exceptionally reserved code, part of IO"
+  },
+  "Q3405693": {
+    "exclude": true,
+    "note": "Sark: ISO exceptionally reserved code, part of Guernsey"
+  },
+  "Q34625512": { "exclude": true, "note": "Tristan da Cunha: reserved code, part of SH" },
+  "Q31890709": { "exclude": true, "note": "Ascension: reserved code, part of SH" },
+  "Q161258": {
+    "exclude": true,
+    "note": "Clipperton: reserved code, uninhabited French possession"
+  },
+
+  "Q29999": {
+    "name": "Paesi Bassi",
+    "note": "Kingdom of the Netherlands holds the ISO code and UN seat; shown with the common name"
+  },
+
+  "Q35": {
+    "category": "un-member",
+    "note": "Denmark: Wikidata records the UN seat on the Kingdom of Denmark (Q756617)"
+  },
+  "Q785": { "name": "Jersey", "note": "No Italian label on Wikidata" },
+
+  "Q414": { "patch": { "drivingSide": "right" }, "note": "Wikidata lists both sides" },
+  "Q5689": { "patch": { "continents": ["europe"] }, "note": "Åland: no continent on Wikidata" },
+  "Q23408": { "name": "Isola Bouvet", "note": "Capitalization" },
+  "Q9676": { "name": "Isola di Man", "note": "Capitalization" },
+
+  "Q237": { "category": "un-observer", "note": "Vatican City (Holy See): UN observer state" },
+  "Q219060": {
+    "category": "un-observer",
+    "name": "Palestina",
+    "note": "State of Palestine: UN observer state"
+  },
+
+  "Q31354462": {
+    "include": true,
+    "category": "partially-recognized",
+    "name": "Abcasia",
+    "note": "Abkhazia"
+  },
+  "Q23427": { "include": true, "category": "partially-recognized", "note": "South Ossetia" },
+  "Q23681": { "include": true, "category": "partially-recognized", "note": "Northern Cyprus" },
+  "Q907112": { "include": true, "category": "partially-recognized", "note": "Transnistria" },
+  "Q34754": { "include": true, "category": "partially-recognized", "note": "Somaliland" },
+  "Q40362": {
+    "include": true,
+    "category": "partially-recognized",
+    "name": "Repubblica Sahrawi",
+    "note": "Sahrawi Arab Democratic Republic"
+  }
+}

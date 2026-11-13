@@ -35,16 +35,20 @@ Legend: `[ ]` to do · `[x]` done · **(decision)** needs a choice before it can
 
 ## M3 — Data pipeline: countries
 
-- [ ] SPARQL client script (Node, run at build time, with on-disk response cache)
-- [ ] Country list query covering all four categories; verify count and edge cases (Vatican, Palestine, Kosovo, Taiwan, Greenland, Puerto Rico…)
-- [ ] Property queries: capital(s), leader (merge all head-of-state/government roles), area, population, borders, currency, languages, ISO codes, calling code, TLD, driving side, independence, organizations
-- [ ] Italian labels + aliases; manual alias override file
-- [ ] Notoriety: initial value from the sitelinks count + manual override file **(decision: override file format)**
-- [ ] Output compact JSON to `data/` with snapshot date; schema validation step
-- [ ] Flags via `flag-icons`; map ISO codes, handle territories with no flag in the package
-- [ ] Silhouettes: download Natural Earth, generate simplified SVG per country
-- [ ] Coats of arms from Wikimedia Commons, recording the license of each file
-- [ ] Scheduled GitHub Action (monthly) that regenerates data and opens a PR with the diff
+- [x] SPARQL client script (Node, run at build time, with on-disk response cache)
+- [x] Country list query covering all four categories; verify count and edge cases (Vatican, Palestine, Kosovo, Taiwan, Greenland, Puerto Rico…)
+- [x] Property queries: capital(s), leader (merge all head-of-state/government roles), area, population, borders, currency, languages, ISO codes, calling code, TLD, driving side, independence, organizations
+- [x] Italian labels + aliases; manual alias override file
+- [x] Notoriety: initial value from the sitelinks count + manual override file (`overrides/countries.json`)
+- [x] Output compact JSON to `data/` with snapshot date; schema validation step
+- [x] Flags via `flag-icons`; map ISO codes, handle territories with no flag in the package
+- [x] Silhouettes: download Natural Earth, generate simplified SVG per country
+- [x] Coats of arms from Wikimedia Commons, recording the license of each file
+- [x] Scheduled GitHub Action (monthly) that regenerates data and opens a PR with the diff
+- [ ] Enable "Allow GitHub Actions to create and approve pull requests" in the repo settings (manual, needed by the data workflow)
+- [ ] Flags for the 6 partially recognized states missing from `flag-icons` (Abkhazia, South Ossetia, Northern Cyprus, Transnistria, Somaliland, Sahrawi Republic): take them from Commons (P41)
+- [ ] Subregion (UN geoscheme): not reliably on Wikidata; decide on a source or a hand-made mapping
+- [ ] Review notoriety and names by hand in `overrides/countries.json`
 
 ## M4 — Quiz engine (pure TS, no UI imports)
 
@@ -67,6 +71,7 @@ Legend: `[ ]` to do · `[x]` done · **(decision)** needs a choice before it can
 - [ ] Lazy-load datasets per entity type
 - [ ] Italian UI copy; responsive layout for phone and desktop
 - [ ] Accessibility pass (keyboard, contrast, screen-reader labels)
+- [ ] Credits screen listing the data sources and the image attributions (CC BY / CC BY-SA images require it)
 
 ## M6 — Deploy
 

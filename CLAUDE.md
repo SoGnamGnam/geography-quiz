@@ -26,7 +26,7 @@ CI (`.github/workflows/ci.yml`) runs lint, check, test and build on every push t
 ## Code layout
 
 - `src/domain/`: entity types (`Country`…), the dataset envelope, set helpers and Italian labels for enums. Pure TypeScript, shared by the engine, the UI and the data pipeline. Bump `SCHEMA_VERSION` on any breaking change to the types.
-- `src/engine/`: the quiz engine. Pure TypeScript, so it must never import Svelte, the DOM or UI modules. Tests sit next to the code as `*.test.ts`.
+- `src/engine/`: the quiz engine. Pure TypeScript, so it must never import Svelte, the DOM or UI modules (`tsconfig.scripts.json` typechecks it without DOM types, so such an import fails the check). Entry point `generateQuiz(data, config, seed)`; templates live in `templates.ts` (add a template there plus its id in `types.ts`, its label and its default in `config.ts`). `fixtures.ts` is a small hand-made dataset for tests; `data.test.ts` runs the engine on the real `data/countries.json`. Tests sit next to the code as `*.test.ts`.
 - `src/`: Svelte UI (`main.ts`, `App.svelte`, `app.css`).
 - `scripts/`: the build-time data pipeline (Node + `tsx`, typechecked with `tsconfig.scripts.json`). `scripts/lib/` holds the generic SPARQL, Commons, validation and output helpers; `scripts/countries/` holds the country-specific queries, the pure `assemble.ts` (unit-tested), silhouettes and coats of arms.
 - `overrides/`: hand-written corrections applied on every regeneration (format in `overrides/README.md`). Fix data here, never by editing `data/` directly.

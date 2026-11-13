@@ -135,6 +135,17 @@ A **quiz configuration** is an object with: number of questions, active template
 
 The quiz engine is a **pure TypeScript module**, separate from the UI and testable.
 
+### Engine design (implemented in `src/engine/`)
+
+- **Question = prompt + subject.** The prompt never names the subject ("Qual è la capitale di questo paese?") and the UI shows the subject ("Italia") separately. This avoids Italian articulated prepositions ("dell'Italia", "del Perù", "degli Stati Uniti"), which would need gender and number data.
+- **Single choice.** Every question has one correct option. For set answers, each option is a whole set: the correct option is the subject's full set, and the **distractors are the sets of other countries** (e.g. "La Paz, Sucre" as a wrong answer for South Africa). Set values are listed alphabetically.
+- **Templates**: country → capital, capital → country, flag → country, silhouette → country, coat of arms → country, country → leader, larger area, larger population. Capital, leader and population questions show the snapshot date.
+- **Distractor strategies**: `random`; `same-continent` (same continent first, then the rest); `similar` (bordering countries, then by distance; for comparisons, countries with the closest value in log scale). The closest candidates are lightly shuffled, so a subject does not always get the same distractors.
+- **Pools**: subjects and distractors come from the countries that pass the quiz filters (continent, category) and the template's notoriety threshold. When that pool is too small for the requested number of options, distractors fall back to the same filters at any notoriety.
+- **Generation**: templates are chosen by weight; a subject is never repeated with the same template, and the same country is not the subject of two consecutive questions when avoidable. The quiz is shorter than requested when the filters leave too few subjects (`requestedCount` tells the UI). A seed makes every quiz reproducible.
+- **Ambiguity guards**: in capital → country, countries sharing a capital are never offered together. In flag questions, look-alike flags (Indonesia/Monaco, Chad/Romania) are never offered together. Territories that use their parent's flag have no flag in the dataset: the pipeline detects them by comparing rendered pixels.
+- **Defaults** (`defaultQuizConfig`): 10 questions, 4 options, same-continent distractors, notoriety ≤ 3. Every template is enabled except coat of arms and leader; comparisons have half weight.
+
 ## Special cases to handle
 
 - Countries with multiple capitals (South Africa, Bolivia…).
@@ -159,12 +170,11 @@ Implemented in `scripts/countries/` and run with `npm run data:countries`. It wr
 - **Manual overrides**: `overrides/countries.json`, a JSON object keyed by QID (format in `overrides/README.md`). Overrides are applied on every regeneration.
 - **Silhouettes**: Natural Earth 1:10m, matched by Wikidata ID (then ISO alpha-3). Far-away parts are dropped (a part is kept if it lies within 800 km of a part already kept), then the shape is projected with an equal-area projection centred on the country, simplified, and written as a single `currentColor` path. Missing: Abkhazia, South Ossetia, Transnistria and the Sahrawi Republic, which Natural Earth does not separate.
 - **Coats of arms**: from Commons (P94), as standard 330px thumbnails re-encoded to 200px WebP (about 4 MB in total). Turkey has none.
-- **Flags**: `flag-icons` codes (lowercase ISO alpha-2); missing for the 6 partially recognized states without an ISO code.
+- **Flags**: `flag-icons` codes (lowercase ISO alpha-2); missing for the 6 partially recognized states without an ISO code. Dependent territories whose flag renders the same as another country's (French overseas territories, Svalbard, Heard Island…) get no flag, because a flag question about them would be unanswerable.
 - **Refresh**: `.github/workflows/data.yml` runs monthly (and on demand), re-queries Wikidata and opens a PR.
 
 ## Open points
 
-- Distractors for multiple-answer questions: e.g. other plausible sets ("Pretoria, Durban, Johannesburg"), or sets from other countries.
 - Notoriety at scale (thousands of entities in M7): the sitelinks-based seed plus overrides works for countries; revisit for cities, rivers, etc.
 
 ## Licensing

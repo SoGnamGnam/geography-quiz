@@ -21,6 +21,7 @@ import { validateCountryDataset } from '../lib/validate'
 import { assembleCountry } from './assemble'
 import { attributionTable, buildCoatsOfArms, type Attribution } from './coats-of-arms'
 import { loadOverrides } from './overrides'
+import { findSharedFlags } from './flags'
 import { buildSilhouettes } from './silhouettes'
 import {
   emptyRawCountry,
@@ -90,6 +91,9 @@ async function main() {
     )
     .sort((a, b) => a.name.localeCompare(b.name, 'it'))
 
+  const sharedFlags = await findSharedFlags(assembled, FLAGS_DIR)
+  log(`Dropped ${sharedFlags.size} flags shared with another country`)
+
   log('Generating silhouettes…')
   const withSilhouette = await buildSilhouettes(assembled, NATURAL_EARTH_CACHE, SILHOUETTES_DIR)
   log(`  ${withSilhouette.size} silhouettes`)
@@ -111,6 +115,7 @@ async function main() {
   // names. Undefined values are dropped when the JSON is written.
   const entities: Country[] = assembled.map((country) => ({
     ...country,
+    flag: sharedFlags.has(country.id) ? undefined : country.flag,
     silhouette: withSilhouette.has(country.id) ? country.id : undefined,
     coatOfArms: withCoatOfArms.has(country.id) ? country.id : undefined,
   }))

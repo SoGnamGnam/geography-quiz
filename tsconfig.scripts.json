@@ -19,5 +19,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
-  "include": ["scripts/**/*.ts", "src/domain/**/*.ts"]
+  // Node-side code: the data pipeline and every unit test, plus the pure
+  // modules they import (domain and engine must not need the DOM either).
+  "include": ["scripts/**/*.ts", "src/**/*.test.ts", "src/domain/**/*.ts", "src/engine/**/*.ts"]
 }

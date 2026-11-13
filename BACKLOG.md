@@ -52,15 +52,17 @@ Legend: `[ ]` to do · `[x]` done · **(decision)** needs a choice before it can
 
 ## M4 — Quiz engine (pure TS, no UI imports)
 
-- [ ] Seeded RNG so quizzes are reproducible in tests
-- [ ] Question template interface: entity type + property + question form
-- [ ] Templates: country → capital, capital → country, flag → country, silhouette → country, country → leader, comparison (larger area / population)
-- [ ] Set-valued answers (full set is the correct answer)
-- [ ] Distractor strategies: random, same continent, very similar (bordering, similar area) **(decision: distractors for set answers — open point in CONTEXT.md)**
-- [ ] Filters: continent, country category, notoriety threshold
-- [ ] Quiz configuration object + quiz generator (question count, weighted templates, per-template difficulty)
-- [ ] Answer checking and result summary
-- [ ] Unit tests for every template and special case (multiple capitals, multiple languages, missing flag/coat of arms)
+- [x] Seeded RNG so quizzes are reproducible in tests
+- [x] Question template interface: entity type + property + question form
+- [x] Templates: country → capital, capital → country, flag → country, silhouette → country, coat of arms → country, country → leader, comparison (larger area / population)
+- [x] Set-valued answers (full set is the correct answer)
+- [x] Distractor strategies: random, same continent, very similar (bordering/nearby, or close value for comparisons); set answers use other countries' sets
+- [x] Filters: continent, country category, notoriety threshold
+- [x] Quiz configuration object + quiz generator (question count, weighted templates, per-template difficulty)
+- [x] Answer checking and result summary
+- [x] Unit tests for every template and special case (multiple capitals, multiple languages, missing flag/coat of arms)
+
+- [ ] More templates (ideas): country → flag (images as options), country → currency / language / continent, borders ("which country borders X?"), landlocked yes/no
 
 ## M5 — Minimal UI
 

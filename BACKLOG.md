@@ -66,14 +66,17 @@ Legend: `[ ]` to do · `[x]` done · **(decision)** needs a choice before it can
 
 ## M5 — Minimal UI
 
-- [ ] Configuration screen (count, templates, weights, difficulty, filters)
-- [ ] Persist the configuration via a Svelte store backed by `localStorage`
-- [ ] Play screen: question, options, optional timer, "data as of…" for time-sensitive questions
-- [ ] Results screen
-- [ ] Lazy-load datasets per entity type
-- [ ] Italian UI copy; responsive layout for phone and desktop
-- [ ] Accessibility pass (keyboard, contrast, screen-reader labels)
-- [ ] Credits screen listing the data sources and the image attributions (CC BY / CC BY-SA images require it)
+- [x] Configuration screen (count, templates, weights, difficulty, filters)
+- [x] Persist the configuration via a Svelte store backed by `localStorage`
+- [x] Play screen: question, options, optional timer, "data as of…" for time-sensitive questions
+- [x] Results screen
+- [x] Lazy-load datasets per entity type
+- [x] Italian UI copy; responsive layout for phone and desktop
+- [x] Accessibility pass (keyboard, contrast, screen-reader labels): number keys answer, focus moves to each new question, live region for feedback, alt texts that do not reveal the answer, reduced-motion support
+- [x] Credits screen listing the data sources and the image attributions (CC BY / CC BY-SA images require it)
+
+- [ ] Test with a real screen reader (TalkBack / VoiceOver) and on real phones
+- [ ] "Update available" prompt instead of the silent auto-update (optional)
 
 ## M6 — Deploy
 

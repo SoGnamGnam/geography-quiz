@@ -146,6 +146,13 @@ The quiz engine is a **pure TypeScript module**, separate from the UI and testab
 - **Ambiguity guards**: in capital → country, countries sharing a capital are never offered together. In flag questions, look-alike flags (Indonesia/Monaco, Chad/Romania) are never offered together. Territories that use their parent's flag have no flag in the dataset: the pipeline detects them by comparing rendered pixels.
 - **Defaults** (`defaultQuizConfig`): 10 questions, 4 options, same-continent distractors, notoriety ≤ 3. Every template is enabled except coat of arms and leader; comparisons have half weight.
 
+### UI (implemented in `src/screens/`)
+
+- Four screens: configuration (question count, continent and category filters, and per-template frequency, number of options, distractor type, notoriety and timer), play, results (score, per-template breakdown, review of every answer) and credits (data sources and the author and license of every coat of arms).
+- Play: options can be chosen with the number keys; after answering, the correct option is highlighted and "Avanti" moves on. "Salta" or an expired timer counts as skipped. Time-sensitive questions show "Dati aggiornati al <date>".
+- The country dataset is a separate chunk, loaded on start. Flags are separate files (not inlined), silhouettes are drawn with a CSS mask so they follow the theme colour, and every asset is precached for offline use (about 7 MB).
+- Light and dark themes follow the system setting.
+
 ## Special cases to handle
 
 - Countries with multiple capitals (South Africa, Bolivia…).

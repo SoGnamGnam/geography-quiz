@@ -4,9 +4,30 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project status
 
-Pre-implementation: the repo has no code, build setup, or tests yet. `CONTEXT.md` is the design document and source of truth for every decision so far. Read it before starting any work, and keep it updated when decisions change or open points are resolved. `BACKLOG.md` tracks implementation work by milestone; tick items off as they land. Once a toolchain exists, add the real build/lint/test commands to this file.
+Project name: **World Quiz** (npm package `world-quiz`). The toolchain is scaffolded, and the app is a placeholder screen. `CONTEXT.md` is the design document and source of truth for every decision so far. Read it before starting any work, and keep it updated when decisions change or open points are resolved. `BACKLOG.md` tracks implementation work by milestone; tick items off as they land.
 
-Licenses: code is GPL-3.0 (`LICENSE`), generated data under `data/` is CC0-1.0 (`data/LICENSE`).
+Licenses: code is GPL-3.0 (`LICENSE`), generated data under `data/` is CC0-1.0 (`data/LICENSE`). Add every new third-party asset or data source to `THIRD_PARTY.md`.
+
+## Commands
+
+Package manager: **npm** (commit `package-lock.json`; CI uses `npm ci`).
+
+- `npm run dev`: dev server
+- `npm run build`: production build into `dist/` (also generates the service worker and PWA icons from `public/icon.svg`)
+- `npm run preview`: serve the production build locally (use this to test offline/PWA behaviour)
+- `npm run check`: typecheck (`svelte-check` for the app, `tsc` for the config files)
+- `npm run lint`: ESLint + Prettier check; `npm run format` rewrites files
+- `npm test`: Vitest, a single run; `npm run test:watch` for watch mode
+- A single test: `npx vitest run src/engine/index.test.ts` or `npx vitest run -t "test name"`
+
+CI (`.github/workflows/ci.yml`) runs lint, check, test and build on every push to `main` and on every PR.
+
+## Code layout
+
+- `src/engine/`: the quiz engine. Pure TypeScript, so it must never import Svelte, the DOM or UI modules. Tests sit next to the code as `*.test.ts`.
+- `src/`: Svelte UI (`main.ts`, `App.svelte`, `app.css`).
+- `public/icon.svg`: the single source for every PWA icon (`pwa-assets.config.ts`).
+- Font: Inter, bundled through `@fontsource-variable/inter` (never load fonts from a CDN).
 
 ## Planned stack
 
@@ -24,7 +45,7 @@ Licenses: code is GPL-3.0 (`LICENSE`), generated data under `data/` is CC0-1.0 (
 
 - **No personal data**: no analytics, no accounts, no progress/XP/levels, and no network calls from the app at runtime. No CDN-loaded assets: fonts and libraries must be bundled, and all data ships in the bundle.
 - **No map-click questions.**
-- **Multi-valued attributes**: the correct answer is the *full set* of values (e.g. South Africa's capital = "Pretoria, Cape Town, Bloemfontein"). All head-of-state/government roles are merged into a single `leader` field, also answered as a set.
+- **Multi-valued attributes**: the correct answer is the _full set_ of values (e.g. South Africa's capital = "Pretoria, Cape Town, Bloemfontein"). All head-of-state/government roles are merged into a single `leader` field, also answered as a set.
 - **Include all countries**: UN members, observers, partially recognized states and dependent territories, each tagged with a category that can be used as a quiz filter.
 - **Notoriety** is assigned per entity by hand. At maximum difficulty every entity can appear.
 - UI text and data are in **Italian** (Italian names plus aliases).

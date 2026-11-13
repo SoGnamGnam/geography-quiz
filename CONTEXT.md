@@ -1,4 +1,4 @@
-# Geo Quiz — Project context
+# World Quiz — Project context
 
 Context document summarizing the decisions made so far. Keep it updated as the project evolves.
 
@@ -16,6 +16,8 @@ A geography quiz for personal use, **fully open** and **non-commercial**, playab
 
 - **PWA** (Progressive Web App): a single codebase for mobile and desktop, installable from the home screen, working offline.
 - **TypeScript + Svelte + Vite**, with `vite-plugin-pwa` for the service worker and manifest.
+- **Tooling**: npm as the package manager, ESLint + Prettier, Vitest for unit tests, and GitHub Actions CI (lint, typecheck, test, build).
+- **Font**: Inter, bundled via `@fontsource-variable/inter`.
 - **Free static hosting** (GitHub Pages or equivalent). No backend and no remote database.
 - Possible future store release via Capacitor, without rewriting the app (not planned for now).
 
@@ -48,7 +50,7 @@ A geography quiz for personal use, **fully open** and **non-commercial**, playab
 - **Multiple values**: when an attribute has several values, the correct answer is the **set of all** values.
   Example: the capital of South Africa is "Pretoria, Cape Town, Bloemfontein".
 - **Notoriety**: assigned and flagged **manually** for each entity. At maximum difficulty all entities appear.
-  *Proposal to confirm*: use the Wikidata sitelinks count as a suggested initial value, to be corrected by hand.
+  _Proposal to confirm_: use the Wikidata sitelinks count as a suggested initial value, to be corrected by hand.
 
 ## Entities and fields
 
@@ -97,7 +99,7 @@ A geography quiz for personal use, **fully open** and **non-commercial**, playab
 - **Islands and archipelagos**: country or countries, area, population, sea or ocean
 - **Peninsulas**: countries, seas that bathe them
 - **Deserts**: countries, area, type (hot or cold)
-- *Optional*: waterfalls, glaciers, canyons
+- _Optional_: waterfalls, glaciers, canyons
 
 ### 7. Historic and cultural sites
 
@@ -133,11 +135,14 @@ The quiz engine is a **pure TypeScript module**, separate from the UI and testab
 - Regions without a flag or coat of arms.
 - Leaders and capitals that change over time, covered by the snapshot date.
 
+## Project name
+
+**World Quiz** (npm package `world-quiz`; also the PWA name).
+
 ## Open points
 
 - Distractors for multiple-answer questions: e.g. other plausible sets ("Pretoria, Durban, Johannesburg"), or sets from other countries.
 - How to manage manual notoriety across thousands of entities (override file, default values).
-- Project name.
 
 ## Licensing
 
@@ -145,8 +150,11 @@ The quiz engine is a **pure TypeScript module**, separate from the UI and testab
 - **Generated data** (everything under `data/`): CC0-1.0 (`data/LICENSE`), matching the Wikidata and Natural Earth sources.
 - Third-party assets keep their own licenses: `flag-icons` (MIT) and Wikimedia Commons images (per file, to be listed in an attribution file).
 
-## Repository layout (planned)
+## Repository layout
 
+- `src/engine/`: the pure TypeScript quiz engine (no UI imports).
+- `src/`: the Svelte UI.
+- `public/icon.svg`: the source for all PWA icons, which are generated at build time.
 - `data/`: generated JSON datasets, committed to the repo and refreshed by the scheduled Action.
 - Raw downloads and SPARQL caches (`.cache/`, `scripts/.cache/`, `data/raw/`) are git-ignored.
 

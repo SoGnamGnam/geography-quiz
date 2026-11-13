@@ -1,6 +1,6 @@
 # Backlog
 
-Implementation backlog, ordered by milestone. `CONTEXT.md` remains the source of truth for design decisions; this file tracks *work*. Tick items as they land and add new ones at the bottom of the right milestone.
+Implementation backlog, ordered by milestone. `CONTEXT.md` remains the source of truth for design decisions; this file tracks _work_. Tick items as they land and add new ones at the bottom of the right milestone.
 
 Legend: `[ ]` to do · `[x]` done · **(decision)** needs a choice before it can start.
 
@@ -8,21 +8,22 @@ Legend: `[ ]` to do · `[x]` done · **(decision)** needs a choice before it can
 
 - [x] `.gitignore` (Node/Vite/PWA, data-pipeline caches, editors, OS, future Capacitor outputs)
 - [x] License: code under **GPL-3.0** (`LICENSE`), generated data under **CC0-1.0** (`data/LICENSE`)
-- [ ] README: description, license summary, privacy note (hosting logs only), dev commands
-- [ ] `THIRD_PARTY.md`: attribution for Wikidata, Natural Earth, flag-icons, and each Wikimedia Commons image with its license
-- [ ] **(decision)** Project name (also sets the PWA name and the repo name)
-- [ ] `.editorconfig`
+- [x] README: description, license summary, privacy note (hosting logs only), dev commands
+- [x] `THIRD_PARTY.md`: attribution for Wikidata, Natural Earth, flag-icons, and each Wikimedia Commons image with its license
+- [x] **(decision)** Project name: **World Quiz**
+- [x] `.editorconfig`
+- [ ] Rename the GitHub repo to `world-quiz` (manual, on GitHub; then update the `origin` remote)
 
 ## M1 — Toolchain
 
-- [ ] Scaffold Vite + Svelte + TypeScript (strict mode)
-- [ ] **(decision)** Package manager (npm / pnpm)
-- [ ] ESLint + Prettier (with the Svelte plugins)
-- [ ] Vitest for unit tests
-- [ ] Bundle a self-hosted font (no CDN)
-- [ ] `vite-plugin-pwa`: manifest, icons, offline precaching
-- [ ] CI workflow: lint, typecheck, test, build on every push/PR
-- [ ] Add the real build/lint/test commands to `CLAUDE.md`
+- [x] Scaffold Vite + Svelte + TypeScript (strict mode)
+- [x] **(decision)** Package manager: **npm**
+- [x] ESLint + Prettier (with the Svelte plugins)
+- [x] Vitest for unit tests
+- [x] Bundle a self-hosted font (no CDN)
+- [x] `vite-plugin-pwa`: manifest, icons, offline precaching
+- [x] CI workflow: lint, typecheck, test, build on every push/PR
+- [x] Add the real build/lint/test commands to `CLAUDE.md`
 
 ## M2 — Domain types
 

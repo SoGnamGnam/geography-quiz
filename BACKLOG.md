@@ -80,7 +80,7 @@ Legend: `[ ]` to do · `[x]` done · **(decision)** needs a choice before it can
 
 ## M6 — Deploy
 
-- [x] GitHub Pages deploy: `npm run deploy` publishes `dist/` to the `gh-pages` branch (relative `base`, no Actions)
+- [x] GitHub Pages deploy: `npm run deploy` publishes `dist/` to the `gh-pages` branch (relative `base`, no Actions); Pages is enabled on the `gh-pages` branch and the site is live at <https://sognamgnam.github.io/geography-quiz/>
 - [ ] Verify offline install on Android, iOS and desktop
 - [ ] Verify no runtime network requests (devtools audit)
 

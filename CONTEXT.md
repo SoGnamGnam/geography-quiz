@@ -18,7 +18,7 @@ A geography quiz for personal use, **fully open** and **non-commercial**, playab
 - **TypeScript + Svelte + Vite**, with `vite-plugin-pwa` for the service worker and manifest.
 - **Tooling**: npm as the package manager, ESLint + Prettier, Vitest for unit tests. There are no GitHub Actions for now; deploy is manual (`npm run deploy`, publishing to the `gh-pages` branch).
 - **Font**: Inter, bundled via `@fontsource-variable/inter`.
-- **Free static hosting** (GitHub Pages or equivalent). No backend and no remote database.
+- **Free static hosting**: GitHub Pages, served from the `gh-pages` branch at <https://sognamgnam.github.io/geography-quiz/> (live). No backend and no remote database.
 - Possible future store release via Capacitor, without rewriting the app (not planned for now).
 
 ### User, progress and privacy

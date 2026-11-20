@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project status
 
-Project name: **World Quiz** (npm package `world-quiz`). The toolchain is scaffolded, and the app is a placeholder screen. `CONTEXT.md` is the design document and source of truth for every decision so far. Read it before starting any work, and keep it updated when decisions change or open points are resolved. `BACKLOG.md` tracks implementation work by milestone; tick items off as they land.
+Project name: **World Quiz** (npm package `world-quiz`). The toolchain is in place and the app is a working prototype (config, play, results and credits screens), deployed to GitHub Pages at <https://sognamgnam.github.io/geography-quiz/>. `CONTEXT.md` is the design document and source of truth for every decision so far. Read it before starting any work, and keep it updated when decisions change or open points are resolved. `BACKLOG.md` tracks implementation work by milestone; tick items off as they land.
 
 Licenses: code is GPL-3.0 (`LICENSE`), generated data under `data/` is CC0-1.0 (`data/LICENSE`). Add every new third-party asset or data source to `THIRD_PARTY.md`.
 

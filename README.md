@@ -6,6 +6,8 @@ It covers every country in the world (UN members, observers, partially recognize
 
 The app is in Italian. It is a Progressive Web App: install it from the browser on Android, iOS or desktop, and it keeps working without a connection.
 
+Live version: <https://sognamgnam.github.io/geography-quiz/>
+
 > Status: early development. See [`BACKLOG.md`](BACKLOG.md) for progress and [`CONTEXT.md`](CONTEXT.md) for the design.
 
 ## Privacy

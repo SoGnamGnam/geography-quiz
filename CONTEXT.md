@@ -16,7 +16,7 @@ A geography quiz for personal use, **fully open** and **non-commercial**, playab
 
 - **PWA** (Progressive Web App): a single codebase for mobile and desktop, installable from the home screen, working offline.
 - **TypeScript + Svelte + Vite**, with `vite-plugin-pwa` for the service worker and manifest.
-- **Tooling**: npm as the package manager, ESLint + Prettier, Vitest for unit tests, and GitHub Actions CI (lint, typecheck, test, build).
+- **Tooling**: npm as the package manager, ESLint + Prettier, Vitest for unit tests. There are no GitHub Actions for now; deploy is manual (`npm run deploy`, publishing to the `gh-pages` branch).
 - **Font**: Inter, bundled via `@fontsource-variable/inter`.
 - **Free static hosting** (GitHub Pages or equivalent). No backend and no remote database.
 - Possible future store release via Capacitor, without rewriting the app (not planned for now).
@@ -178,7 +178,7 @@ Implemented in `scripts/countries/` and run with `npm run data:countries`. It wr
 - **Silhouettes**: Natural Earth 1:10m, matched by Wikidata ID (then ISO alpha-3). Far-away parts are dropped (a part is kept if it lies within 800 km of a part already kept), then the shape is projected with an equal-area projection centred on the country, simplified, and written as a single `currentColor` path. Missing: Abkhazia, South Ossetia, Transnistria and the Sahrawi Republic, which Natural Earth does not separate.
 - **Coats of arms**: from Commons (P94), as standard 330px thumbnails re-encoded to 200px WebP (about 4 MB in total). Turkey has none.
 - **Flags**: `flag-icons` codes (lowercase ISO alpha-2); missing for the 6 partially recognized states without an ISO code. Dependent territories whose flag renders the same as another country's (French overseas territories, Svalbard, Heard Island…) get no flag, because a flag question about them would be unanswerable.
-- **Refresh**: `.github/workflows/data.yml` runs monthly (and on demand), re-queries Wikidata and opens a PR.
+- **Refresh**: manual for now (`npm run data:countries -- --refresh`). The monthly GitHub Action was removed and can be restored from git history (`.github/workflows/data.yml`).
 
 ## Open points
 

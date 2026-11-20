@@ -10,7 +10,7 @@ Licenses: code is GPL-3.0 (`LICENSE`), generated data under `data/` is CC0-1.0 (
 
 ## Commands
 
-Package manager: **npm** (commit `package-lock.json`; CI uses `npm ci`).
+Package manager: **npm** (commit `package-lock.json`).
 
 - `npm run dev`: dev server
 - `npm run build`: production build into `dist/` (also generates the service worker and PWA icons from `public/icon.svg`)
@@ -20,8 +20,9 @@ Package manager: **npm** (commit `package-lock.json`; CI uses `npm ci`).
 - `npm test`: Vitest, a single run; `npm run test:watch` for watch mode
 - A single test: `npx vitest run src/engine/index.test.ts` or `npx vitest run -t "test name"`
 - `npm run data:countries`: regenerate `data/countries.json`, the silhouettes and the coats of arms (uses the cache in `scripts/.cache/`; add `-- --refresh` to re-query Wikidata). Needs network access on the first run.
+- `npm run deploy`: runs lint, check, test and build, then publishes `dist/` to the `gh-pages` branch (GitHub Pages serves that branch).
 
-CI (`.github/workflows/ci.yml`) runs lint, check, test and build on every push to `main` and on every PR. `.github/workflows/data.yml` refreshes the data monthly and opens a PR.
+There are no GitHub Actions workflows for now (CI and the monthly data refresh were removed); run the checks and `npm run data:countries` by hand.
 
 ## Code layout
 

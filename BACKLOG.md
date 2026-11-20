@@ -12,7 +12,7 @@ Legend: `[ ]` to do · `[x]` done · **(decision)** needs a choice before it can
 - [x] `THIRD_PARTY.md`: attribution for Wikidata, Natural Earth, flag-icons, and each Wikimedia Commons image with its license
 - [x] **(decision)** Project name: **World Quiz**
 - [x] `.editorconfig`
-- [ ] Rename the GitHub repo to `world-quiz` (manual, on GitHub; then update the `origin` remote)
+- [x] **(decision)** Keep the GitHub repo name `geography-quiz` (no rename; the project name stays World Quiz)
 
 ## M1 — Toolchain
 
@@ -22,7 +22,7 @@ Legend: `[ ]` to do · `[x]` done · **(decision)** needs a choice before it can
 - [x] Vitest for unit tests
 - [x] Bundle a self-hosted font (no CDN)
 - [x] `vite-plugin-pwa`: manifest, icons, offline precaching
-- [x] CI workflow: lint, typecheck, test, build on every push/PR
+- [ ] CI workflow: lint, typecheck, test, build on every push/PR (removed for now; restore from git history)
 - [x] Add the real build/lint/test commands to `CLAUDE.md`
 
 ## M2 — Domain types
@@ -44,7 +44,7 @@ Legend: `[ ]` to do · `[x]` done · **(decision)** needs a choice before it can
 - [x] Flags via `flag-icons`; map ISO codes, handle territories with no flag in the package
 - [x] Silhouettes: download Natural Earth, generate simplified SVG per country
 - [x] Coats of arms from Wikimedia Commons, recording the license of each file
-- [x] Scheduled GitHub Action (monthly) that regenerates data and opens a PR with the diff
+- [ ] Scheduled GitHub Action (monthly) that regenerates data and opens a PR with the diff (removed for now; restore from git history)
 - [ ] Enable "Allow GitHub Actions to create and approve pull requests" in the repo settings (manual, needed by the data workflow)
 - [ ] Flags for the 6 partially recognized states missing from `flag-icons` (Abkhazia, South Ossetia, Northern Cyprus, Transnistria, Somaliland, Sahrawi Republic): take them from Commons (P41)
 - [ ] Subregion (UN geoscheme): not reliably on Wikidata; decide on a source or a hand-made mapping
@@ -80,7 +80,7 @@ Legend: `[ ]` to do · `[x]` done · **(decision)** needs a choice before it can
 
 ## M6 — Deploy
 
-- [ ] GitHub Pages workflow (correct `base` path for the PWA)
+- [x] GitHub Pages deploy: `npm run deploy` publishes `dist/` to the `gh-pages` branch (relative `base`, no Actions)
 - [ ] Verify offline install on Android, iOS and desktop
 - [ ] Verify no runtime network requests (devtools audit)
 

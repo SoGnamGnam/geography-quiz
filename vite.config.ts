@@ -4,6 +4,8 @@ import { defineConfig } from 'vitest/config'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Relative base: works under any GitHub Pages path, so the repo name does not matter.
+  base: './',
   build: {
     // Keep flags as separate files: inlining ~270 small SVGs as base64 would
     // add ~200 KB to the main bundle that every page load has to parse.
